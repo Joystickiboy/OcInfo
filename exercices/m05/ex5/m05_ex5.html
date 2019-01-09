@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            
+            let m = 0;
+            let txt = "";
+            let i = 1;
+            let j = 1;
+            do {
+                while(j<=12){
+                    m = i*j;
+                    txt += " "+m;
+                    j++;
+                }
+                txt += "\n"+" ";
+                j = 1;
+                i++;
+            } while (i<=12)
+            
+            alert("Livrets de 1 à 12 \n"+txt);
+		</script>
+	
+	</body>
+</html>

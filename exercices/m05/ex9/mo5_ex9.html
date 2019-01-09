@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            
+            //Variables Globales
+            alert("J'ai un nombre secret entre 1 et 20 dans ma tête, devinez ce que c'est.");
+			let random = Math.floor(Math.random()*20) + 1;
+            let nbPropo;
+            
+            //Fonctions
+            function validerProposition(a) {
+                return (!isNaN(a) && a > 0)
+            }
+            
+
+         
+            function testerProposition(){
+                let propo;
+                //let propo = parseInt(prompt("1er choix"));
+                //validerProposition(propo);
+                let numPropo = 1;
+                let i = 0;
+                while (i <= (nbPropo)) {
+                    do {
+                        propo = parseInt(prompt("Saisissez votre choix n° "+numPropo+" : "));
+                    } while (!validerProposition(propo))
+                    
+                    
+                    if (propo == random){
+                        alert("Victoire royale !");
+                        break;
+                    } else if (propo < random) {
+                        alert(propo+" est plus petit que le nombre secret.");
+                    } else {
+                        alert(propo+" est plus grand que le nombre secret.");
+                    }
+                    numPropo++;
+                    i++;
+                } 
+            }
+            
+            
+            //Main
+			do {
+				nbPropo = parseInt(prompt("Saisissez le nombres d'essais auquel vous avez besoin"));
+			} while (!validerProposition(nbPropo))
+            testerProposition();
+            
+            
+		</script>
+	
+	</body>
+</html>

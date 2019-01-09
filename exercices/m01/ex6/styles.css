@@ -1,0 +1,87 @@
+/* feuille de style pour l'exercice n°6 avec les nouvelles balises HTML5 */
+body{
+    font-family: verdana;
+    background-color: darkgray;
+}
+#page{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding: 10px;
+    padding-right: 15px;
+}
+.info{
+    color:darkturquoise;
+    text-align: right;
+    display: table-cell;
+    float: right;
+    font-size: 90%;
+    margin-top: 5px;
+}
+#logo{
+    display: table-cell;
+    float: left;
+    margin-top: 1px;
+    margin-left: 1px;
+}
+a{
+    color: green;
+    text-decoration: none;
+}
+a:active{
+    color: red;
+}
+.top_links{
+    font-size: 10px;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+.top_line{
+    vertical-align: top;
+    height: 95px;
+    height: 95px;
+}
+.article{
+    color: grey;
+    width: 55%;
+    background-color:beige;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border: grey solid 1px;
+    padding: 5px;
+}
+.title{
+    color:blue; 
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.time{
+    font-size: 50%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: black;
+    font-style: bold;
+}
+.link{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+#left{
+    margin-top: 75px;
+    margin-right: 2px;
+}
+#right{
+    float: right;
+    margin-right: 7px;
+    margin-top: 73px;
+}
+.usefull{
+    margin-bottom: 30px;
+    margin-top: 25px;
+    font-size: 120%;
+}
+.copy{
+    font-size: 60%;
+}

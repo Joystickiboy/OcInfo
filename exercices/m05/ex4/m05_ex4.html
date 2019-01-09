@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+			
+            "use strict";
+			let m = 0;
+			let n = 0;
+            
+			function saisirNombres() {
+				do {
+					m = parseInt(prompt("Saisissiez un nombre"));
+					n = parseInt(prompt("Saisissez le nb de multiples"));
+				} while (isNaN(m) || isNaN(n))
+			}
+			
+			function nMultiplesDe(x,y) {
+				//fonctionne correctement
+                // Ici, on peut utiliser des paramètres car on ne cherche pas à les modifier
+				let txt = "";
+				let i = 1; // par tradition, utiliser i,j,k,l,m comme compteur (nb entier)
+                // la premier multiple est le nb lui-même pas 0...
+				
+				do {
+					txt += "\n"+(i*x);
+					i++;	
+				} while (i <= y) // il faut encore parcourir le boucle lorsque i=y
+
+				alert("Les multiples de "+x+" sont : "+txt);
+			
+			}
+			
+			function combi(){
+                // On ne peut malheureusement pas passer m et n en paramètres
+                // car on veut définir leurs valeurs dans "saisirNombres" mais siasirNombre ne peut pas modifier m et n...
+				saisirNombres();
+				nMultiplesDe(m,n);
+			}
+			//fonctionne pas
+			combi();
+				
+		</script>
+	
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            var vitesse = parseInt(prompt("Indiquer votre vitesse ici"));
+            var salutations = "Bonne route.";
+            if(vitesse > 50) {
+                alert("Vous roulez trop vite ! \n Ralentissez svp \n "+salutations);
+            }
+            else if (0 < vitesse && vitesse < 50) {
+                alert("Tout est bon. "+salutations);
+            }
+            
+            else{
+                alert("Vous êtes bizarre... Loin !");
+            }
+        </script>
+    </body>
+
+</html>

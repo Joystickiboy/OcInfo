@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+			
+			let random = Math.floor(Math.random()*20) + 1;
+			
+			function testerProposition(txt) {
+				let propo = 0;
+				
+				propo = parseInt(prompt(txt));
+				
+				if (isNaN(propo)){
+					alert("Donnez moi un nombre pour que cela fonctionne");
+				} else {
+					
+					if (propo == random) {
+						alert("Vous avez trouvé le nombre secret, c'était bel et bien : "+random);
+						return true;
+					} else if (random < propo) {
+							alert("Le nombre secret est plus petit que : "+propo);
+						} else {
+							alert("Le nombre secret est plus grand que : "+propo);
+						}
+					}
+					return false;
+				}
+			if (!testerProposition("J'ai un nombre secret entre 1 et 20 dans ma tête, devinez ce que c'est. Vous avez 3 propositions \nPremière proposition : ")) {
+				if (!testerProposition("Deuxième proposition : ")) {
+					if (!testerProposition("Dernière proposition : ")){
+						alert("Dommage, le nombre secret était : "+random+" Vous pouvez toujouer réessayer...")
+					}
+				}
+			}
+
+        </script>
+    </body>
+
+</html>

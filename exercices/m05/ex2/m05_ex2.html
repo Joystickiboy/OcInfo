@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+			
+            "use strict";
+            
+			function verifierNmbre(x) {
+				if (!isNaN(x)) {
+					return true;
+				} else {
+					return false;
+				}
+			}         
+
+            let x = parseInt(prompt("Veuillez saisir un nombre : "));
+
+            do {
+				if (verifierNmbre(x)){
+					break;
+				}
+                x = parseInt(prompt("Vous n'avez pas saisi un nombre !"));
+            } while (!verifierNmbre(x))
+
+            alert("BRAVO, VOUS AVEZ RÉUSSI À SAISIR UN NOMBRE !!");
+
+		</script>
+	
+	</body>
+</html>

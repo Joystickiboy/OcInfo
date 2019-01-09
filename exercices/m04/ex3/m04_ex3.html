@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+			"use strict";
+			
+			let roundNmbr = 1;
+			let pos = 0;
+			
+			function diceThrow(){
+				return Math.floor(Math.random()*6) + 1;
+			}
+			function RoundInc(){
+				
+				let dice1 = diceThrow();
+				let dice2 = diceThrow();
+				let sum;
+				
+				if (dice1 == 4 && dice2 == 4) {
+					pos -= 8;
+					if (pos < 0) {
+						pos = 0;
+					}
+				} else {
+					sum = dice1 + dice2;
+					if (dice1 == 3 || dice2 == 3) {
+						sum *= 2;
+					}
+					pos += sum;
+				}
+				
+				alert("Tour numéro "+roundNmbr+" \ndé 1 : "+dice1+" \ndé 2 : "+dice2+" \nVous avez avancé de "+sum+" cases.");
+				alert("Vous êtes maintenant à la case "+pos+".");
+				
+				roundNmbr += 1;
+			}
+			
+			function game(){
+				
+				RoundInc();
+				RoundInc();
+				
+				if (pos < 21) {
+					RoundInc();
+					if (pos >= 21) {
+						alert("Victoire !");
+					} else {
+						alert("Défaite, vous pouvez toujour recommencer...");
+					}
+				} else {
+					alert("Victoire !");
+				}
+				
+			}
+			alert("Jouons à un petit jeu... \nOcinfo.ch pour connaître les règles, \nmême si vous n'avez aucun contrôle sur le jeu")
+			game();
+			
+		</script>
+	
+	</body>
+</html>

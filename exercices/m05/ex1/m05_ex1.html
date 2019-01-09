@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+			
+            "use strict";
+            
+            let borne1 = parseInt(prompt("Saisisez le début des valeurs à imprimer : "))
+            let borne2 = parseInt(prompt("Saisisez la fin des valeurs à imprimer : "));
+            let borne1a = borne1;
+
+            function verifierNmbre(x,y) {
+                if (!isNaN(x) || isNaN(y)){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            let txt = "";
+
+            if(verifierNmbre(borne1,borne2) && (borne1 < borne2)){
+                
+                let conf = confirm("Voulez-vous utiliser while? \nSi vous dites non ça sera for.");
+                
+                if (conf) {
+                    while (borne1 <= borne2){
+                        txt += "\n"+borne1;
+                        borne1++;
+                    }
+                } else {
+                    for (borne1; borne1 <= borne2; borne1++){
+                        txt += "\n"+borne1;
+                    }
+                }
+            } else {
+                alert("Veuillez bien vérifier que le début est plus petit que la fin et que ce sont bien des nombres !")
+            }
+            alert("Les nombres entre "+borne1a+" et "+borne2+" sont : "+txt);
+		</script>
+	
+	</body>
+</html>

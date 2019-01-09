@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>M05 : ex 8</title>
+        <script>
+
+            "use strict";
+
+            //déclaration des variables globales
+            let joueur1, joueur2;
+            
+			let nbreCouleur1=0;
+			let carteCouleur1="";
+			let nbreCouleur2=0;
+			let carteCouleur2="";
+			let carteValeur1=0;
+			let carteValeur2=0;
+			
+			let resultatJ1=0;
+			let resultatJ2=0;
+			
+            //déclaration des fonctions
+
+			function nomJoueur (a) {
+				return prompt("Nom du joueur n°"+a);
+			}
+			
+			function randomNmbr(x1, x2){
+				return (x1-1)+Math.ceil(Math.random()*(x2-x1+1));
+			}
+			
+			function deterCouleur(a){
+				let couleur;
+				if (a==1){
+					couleur = "carreau";
+				} else if (a==2){
+					couleur = "trèfle";
+				} else if (a==3){
+					couleur = "pique";
+				} else if (a==4){
+					couleur = "coeur";
+				} else {
+					null;
+				}
+				return couleur;
+			}
+
+			function afficherResultat (a){
+				alert("tour n°"+a+": \n"+joueur1+" a obtenu le "+carteValeur1+" de "+carteCouleur1+". \n"+joueur2+" a obtenu le "+carteValeur2+" de "+carteCouleur2+".");
+			}
+
+			function afficherVainqueur(a){
+				if (carteValeur1 != carteValeur2){
+					if (carteValeur1 > carteValeur2){
+						alert(joueur1+" a gagné le tour n°"+a);
+						resultatJ1++;
+					} else {
+						alert(joueur2+" a gagné le tour n°"+a);
+						resultatJ2++;	
+					}
+				} else {
+					if (nbreCouleur1 != nbreCouleur1){
+						if (nbreCouleur1 > nbreCouleur2){
+							alert(joueur1+" a gagné le tour n°"+a);
+							resultatJ1++;
+						} else {
+							alert(joueur2+" a gagné le tour n°"+a);
+							resultatJ2++;
+						}
+					} else {
+						alert("Les deux joueurs ont gagné le tour n°"+a);
+						resultatJ1++;
+						resultatJ2++;
+					}
+				}
+			}
+			
+			function afficherResultatFinal(){
+				if (resultatJ1 == resultatJ2){
+					alert("Les deux joueurs ont gagné la partie!");
+				} else if (resultatJ1 > resultatJ2){
+					alert(joueur1+" a gagné la partie ! \nVictoire Royale !");
+				} else {
+					alert(joueur2+" a gagné la partie !");
+				}
+			}
+			
+			function unTour(a){
+				carteValeur1 = randomNmbr(6, 14);
+				carteValeur2 = randomNmbr(6, 14);
+				nbreCouleur1 = randomNmbr(1, 4);
+				nbreCouleur2 = randomNmbr(1, 4);
+				carteCouleur1 = deterCouleur(nbreCouleur1);
+				carteCouleur2 = deterCouleur(nbreCouleur2);
+				afficherResultat(a);
+				afficherVainqueur(a);
+			}
+			
+			function unePartie(){
+				joueur1 = nomJoueur(1);
+				joueur2 = nomJoueur(2);
+				
+				let i = 1;
+				
+				while (i < 4) {
+					unTour(i)
+					i++;
+				}
+				
+				afficherResultatFinal();
+			}
+			
+            //lancer le programme principal
+			
+			unePartie();
+
+        </script>
+      </head>
+      <body>
+
+      </body>
+</html>

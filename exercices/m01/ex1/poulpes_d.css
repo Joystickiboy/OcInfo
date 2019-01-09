@@ -1,0 +1,95 @@
+
+html {
+    background-color: lightblue;
+}
+
+body {
+    font-family:arial;
+    background-color: lightcyan;
+    font-size: 14px;
+    padding:  20px;
+    width: 900px;
+    border-width: 2px;
+    margin:auto;
+}
+
+p {
+    
+}
+
+#titre_general {
+    font-size: 120%;
+    padding: 10px;
+    background-color: white;
+    border: solid blue 2px;
+    color: blue;
+}
+
+h1,h2,h3 {
+    font-style: italic;
+}
+
+h1 {
+    font-size: 170%;
+}
+
+h2 {
+    color: blue;
+    font-size: 140%;
+
+}
+
+h3 {
+    font-size: 110%;
+    margin-left: 20px;
+}
+
+img, .legende {
+    display: block;
+    margin: 8px;
+    height: 55%;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.legende {
+    font-size: 90%;
+    padding: 20px;
+    background-color: white;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.img_dans_txt {
+    display: inline;
+    height: 10%;
+    width: 10%;
+    margin-left: 10px;
+}
+
+a {
+    color:brown;
+    background-color: white;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.note {
+        font-family:cursive;
+        color:dimgray;
+}
+
+.latin {
+        font-family:courier;
+        color:dimgrey;
+}
+
+.sources {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+

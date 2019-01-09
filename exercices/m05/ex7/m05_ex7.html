@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            
+            let n = parseInt(prompt("Saisissez un nombre entier positif pour définir la taille de la grille : "));
+            let i = 1;
+            let j = 1;
+            let txt = "";
+            let car;
+            
+            while (i<=n) {
+                if (i%2 == 0){
+                    car = "O";
+                } else {
+                    car = "X";
+                }
+                while (j<=n) {
+                    txt += car;
+                    if (car == "X") {
+                        car = "O";
+                    } else {
+                        car = "X";
+                    }
+                    j++;
+                }
+                txt += "\n";
+                j = 1;
+                i++;
+            }
+            alert(txt);
+		</script>
+	
+	</body>
+</html>

@@ -1,0 +1,20 @@
+#topbar{
+	height: 60px;
+}
+#logo{
+	float: left;
+	margin: 12px;
+}
+button{
+	margin: 10px;
+}
+#sections_panel{
+	position: absolute;
+	height: 0px;
+	width: 600px;
+	background: #000;
+	top: 60px;
+	left: 100px;
+	overflow: hidden;
+	transition: height 0.3s linear 0s;
+}

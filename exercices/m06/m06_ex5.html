@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            //Variables Globales
+            let tFruits = [0,0,0,0,0];
+            let victoiresJoueur = 0;
+            let victoiresCorbeau = 0;
+            let parties = 0;
+            //Fonctions
+            function lancerDe(){
+                let de = Math.floor(Math.random()*5)+1;
+                return de;
+            }
+            
+            function compter() {
+                let i = 0;
+				let j = 0;
+                while (i < 40 || j < 9){
+                    let c = lancerDe();
+                    if (c == 5) {
+                        j++;
+                    } else {
+                        tFruits[c-1]++;
+                        i++;
+                    }
+                }
+                if (i == 40){
+                    victoiresJoueur += 1;
+                } else if (j == 9){
+                    victoiresCorbeau += 1;
+                } else {
+                    null;
+                }
+            }
+            
+            //Main
+			do {
+            	compter();
+				parties++;
+			} while (parties < 100000)
+            alert("Joueur : "+victoiresJoueur+"\nCorbeau "+victoiresCorbeau);
+            
+		</script>
+	
+	</body>
+</html>

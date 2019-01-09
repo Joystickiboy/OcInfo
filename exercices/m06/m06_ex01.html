@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            //Variables Globales
+            
+			
+            //Fonctions
+            function doArray(){
+				let numbers = [];
+				let i = 1;
+				do{
+					numbers.push(Math.floor((Math.random()*10)+1));
+					i++;
+				} while (i <= 100)
+				
+				let txt;
+				
+				let arrayL = numbers.length;
+				for (i = 0; i < arrayL; i++){
+					txt += "\n"+i+" : "+numbers[i];
+				}
+				alert(txt);
+			}
+            
+            //Main
+            doArray();
+			
+		</script>
+	
+	</body>
+</html>

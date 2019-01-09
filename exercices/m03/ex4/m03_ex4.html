@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+			alert("Vous pouvez calculer le résultat d'une équation de deuxième degré en me disant ce qu'est a, b et c \n ax^2+bx+c=0");
+			
+			let a = parseFloat(prompt("Saisissez la valeur de A : "));
+			let b = parseFloat(prompt("Saisissez la valeur de B : "));
+			let c = parseFloat(prompt("Saisissez la valeur de C : "));
+			
+			let delta = (b ** 2) - (4 * a * c);
+			console.log(delta);
+			
+			let x1 = (-b - Math.sqrt(delta)) / 2 * a;
+			let x2 = (-b + Math.sqrt(delta)) / 2 * a;
+			
+			alert("Les deux zéros sont : \n ("+x1+";0) et ("+x2+";0)");
+			
+        </script>
+    </body>
+
+</html>

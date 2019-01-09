@@ -1,0 +1,74 @@
+html{
+    font-family: monospace;
+}
+body{
+    background-image: url(img/neige.jpg)
+}
+h1{
+    font-size: 25px;
+    color: darkblue;
+}
+#section{
+    margin: auto;
+    width: 800px;
+    padding: 20px;
+    background-color: pink;
+    border: solid 5px deeppink;
+    margin-top: 60px;
+}
+.info_titre{
+    text-align: center;
+    color: darkblue;
+}
+.cell_right{
+    display: table-cell;
+    vertical-align: text-top; ### Bien vu !
+    margin-left: 2px;
+}
+.cell_left{
+    display: table-cell;
+    width: 220px;
+    float: left;
+    margin: 2px;
+}
+footer{
+    margin: 20px;
+}
+.article{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: floralwhite;
+    border: solid 1px hotpink;
+}
+.info_ville{
+    font-size: 120%;
+}
+.source{
+    color: green;
+    font-size: 15px;
+    text-align: center;
+}
+.titre_ville{
+    color:darkblue;
+}
+.grand_titre{
+    margin: auto;
+    font-size: 30px;
+    color: hotpink;
+    text-decoration: underline;
+    text-align: center;
+}
+p{
+    color: grey;
+    font-style: oblique;
+    text-align: justify;
+}
+.para{
+    font-style: oblique;
+    color: black;
+}
+img{
+    width: 90%;
+    /*height: 90%;*/
+    padding: 5px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            //Variables Globales
+            let tAlphaB = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' '];
+            let nivCryptage = 0;
+            let texteEntree = "";
+            let tTexteAvant = [];
+            let tTexteApres = [];
+            let txt = "Le resultat du cryptage est : \n\n";
+            
+            //Fonctions
+            function crypter(l, nC) {
+                let trouver = false;
+                let i = 0;
+                while (!trouver && i < tAlphaB.length) {
+                    if (l == tAlphaB[i]) {
+                        trouver = true;
+                    }
+                    i++;
+                }
+                if (!trouver) {
+                    return "*";
+                }
+                i--;
+                if ((i+nC) >= (tAlphaB.length)) {
+                    return tAlphaB[i+nC-tAlphaB.length];
+                } else {
+                    return tAlphaB[i+nC];
+                }
+            }
+            
+            //Main
+            while (nivCryptage <= 0 || isNaN(nivCryptage) || nivCryptage > 10) {
+                nivCryptage = parseInt(prompt("Veuillez saisir votre niveau de cryptage entre 1 et 10 :"));
+            }
+            while (texteEntree == "") {
+                texteEntree = prompt("Saisissez le texte à crypter :").toUpperCase();
+            }
+            
+            tTexteAvant = texteEntree.split('');
+            
+            for (let i = 0; i<tTexteAvant.length; i++) {
+                tTexteApres.push(crypter(tTexteAvant[i],nivCryptage));
+            }
+            
+            for (let i = 0; i < tTexteApres.length; i++) {
+                txt += tTexteApres[i];
+            }
+            
+            alert(txt);
+            
+		</script>
+	
+	</body>
+</html>

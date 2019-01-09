@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            //Variables Globales
+            let capitalInit;
+            let nbAnnees;
+            let interet;
+            
+            //Fonctions
+            function verifier(a){
+                return (a > 1 && (!isNaN(a)));
+            }
+            
+            function verifierFloat(a){
+                return (!isNaN(a));
+            }
+            
+            function calcul(){
+                do {
+                    capitalInit = parseFloat(prompt("capital initial"));
+                } while (!verifier(capitalInit))
+                
+                do {
+                    nbAnnees = parseFloat(prompt("nombre années"));
+                } while(!verifier(nbAnnees))
+                    
+                do {
+                    interet = parseFloat(prompt("taux d'interet"));
+                } while (!verifierFloat(interet))
+                    
+                let txt="capital initial : "+capitalInit+" CHF";
+				let i = 1;
+				let ans = 1;
+                
+				do {
+					capitalInit += (interet * capitalInit) / 100;
+					txt += "\n"+ans+" an(s) : "+(Math.round(capitalInit/0.05)*0.05).toFixed(2)+" CHF";
+					ans++;
+					i++;
+				} while (i <= nbAnnees)
+				
+				alert(txt);
+            }
+            
+            //Main
+            calcul();
+			
+		</script>
+	
+	</body>
+</html>

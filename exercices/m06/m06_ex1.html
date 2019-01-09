@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+    
+        <script>
+            "use strict";
+            //Variables Globales
+            
+            let t = [];
+            let r = [];
+            
+            //Fonctions
+            
+            function genererTableaNbAl() {
+                let t = [];
+                
+                for (let i = 0; i < 500; i++) {
+                    t.push(Math.ceil(Math.random()*10));
+                }
+                return t;
+            }
+            
+            function compterNombre(t, x) {
+                let n=0;
+                for (let i= 0; i < t.length; i++){
+                    if (t[i] == x) {
+                        n++;
+                    }
+                }
+                return n;
+            }
+            
+            //Main
+            
+            t = genererTableaNbAl();
+            
+            for (let i = 1; i <= 10; i++){
+                r.push(compterNombre(t,i));
+            }
+            
+            let txt = "Résultat du comptage : ";
+            for (let i = 0; i < r.length; i++){
+                txt += "\n" + (i + 1) + " : " + r[i];
+            }
+            
+            alert(txt);
+		</script>
+	
+	</body>
+</html>

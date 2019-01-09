@@ -1,0 +1,26 @@
+html{
+    font-family: courier, sans-serif;
+}
+.edimburgh{
+    position: fixed;
+    left: 340px;
+    top: 77px;
+}
+.madrid{
+    position:fixed;
+    left: 330px;
+    top: 530px;
+}
+.square{
+    width: 15px;
+    height: 15px;
+}
+.right_cell{
+    padding-left: 5px;
+}
+.madrid .square{
+    background-color: yellow;
+}
+.edimburgh .square{
+    background-color: red;
+}

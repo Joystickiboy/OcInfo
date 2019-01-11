@@ -2,7 +2,7 @@ function Flower(x, y){
     this.x = x;
     this.y = y;
     this.r = 15;
-    this.xdir = 1;
+    this.xdir = 1.5;
     this.toDelete = false;
 
     this.show = function(){
@@ -13,7 +13,7 @@ function Flower(x, y){
 
     this.shiftDown = function(){
         this.xdir *= -1;
-        this.y += this.r;
+        this.y += this.r*2.5;
     }
 
     this.move = function(){

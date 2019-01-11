@@ -19,11 +19,11 @@ function draw(){
         flowers[i].show();
         flowers[i].move();
 
-        if (flowers[i].x > width || flowers[i].x < 0) {
+        if ((flowers[i].x + flowers[i].r) > width || (flowers[i].x - flowers[i].r)< 0) {
             edge = true;
         }
 
-        if (flowers[i].y > height){
+        if ((flowers[i].y + flowers[i].r) > height){
             lost = true;
         }
     }
@@ -50,6 +50,12 @@ function draw(){
             }
         }
     }
+    if (ship.x > width){
+        ship.x = width;
+    } else if (ship.x < 0){
+        ship.x = 0;
+    }
+    
     if (lost){
         flowers.splice(0, flowers.length);
         delete ship.show;
@@ -80,7 +86,8 @@ function keyPressed(){
     }
     if (keyCode == RIGHT_ARROW){
         ship.setDir(1);
-    } else if (keyCode == LEFT_ARROW) {
+    }
+    if (keyCode == LEFT_ARROW) {
         ship.setDir(-1);
     }
     

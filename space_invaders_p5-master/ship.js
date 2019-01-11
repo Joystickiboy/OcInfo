@@ -1,11 +1,11 @@
 function Ship(){
     this.x = width/2;
+    this.y = height;
     this.xdir = 0;
 
     this.show = function(){
         fill(255);
-        rectMode(CENTER);
-        rect(this.x, height-20, 20, 50);
+        triangle(this.x-20, this.y, this.x+20, this.y, this.x, this.y-25);
     }
 
     this.setDir = function(dir){

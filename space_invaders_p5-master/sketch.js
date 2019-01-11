@@ -37,13 +37,16 @@ function draw(){
         btn = createElement("h2", "YOU WIN");
     }
 
-    for (var i = 0; i < drops.length; i++){
+    for (var i = drops.length-1; i >= 0; i--){
         drops[i].show();
         drops[i].move();
         for (var j = 0; j < flowers.length; j++){
             if (drops[i].hits(flowers[j])) {
                 flowers[j].bye();
-                // console.log("YOHOO");
+                drops[i].bye();
+            }
+            if (drops[i].toDelete){
+                drops.splice(i, 1);
             }
             if (flowers[j].toDelete){
                 flowers.splice(j, 1);
@@ -81,7 +84,7 @@ function keyReleased() {
 
 function keyPressed(){
     if (key === ' '){
-        var drop = new Drop(ship.x, height);
+        var drop = new Drop(ship.x, height-26);
         drops.push(drop);
     }
     if (keyCode == RIGHT_ARROW){

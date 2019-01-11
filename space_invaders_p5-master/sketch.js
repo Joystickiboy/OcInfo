@@ -11,7 +11,7 @@ function setup(){
 }
 
 function draw(){
-    background(51);
+    background(250, 128, 114);
     ship.show();
     ship.move();
     let edge = false;
@@ -34,7 +34,7 @@ function draw(){
     }
     
     if (flowers.length == 0){
-        btn = createElement("h1", "YOU WIN");
+        btn = createElement("h2", "YOU WIN");
     }
 
     for (var i = 0; i < drops.length; i++){

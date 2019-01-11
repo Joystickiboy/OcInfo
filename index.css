@@ -79,3 +79,11 @@ button:focus{
 	overflow: hidden;
 	transition: height 0.2s linear 0s;
 }
+#supplements{
+    display: inline-block;
+    width: 45%;
+}
+#supplements2{
+    display: inline-block;
+    width: 40%;
+}

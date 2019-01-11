@@ -1,7 +1,7 @@
 function toggleNavPanel(x){
 	let panel = document.getElementById(x);
 	let navarrow = document.getElementById("navarrow");
-	let maxH="45px";
+	let maxH="90px";
 	
 	if(panel.style.height == maxH){
 		panel.style.height = "0px";

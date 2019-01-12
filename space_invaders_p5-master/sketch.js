@@ -19,11 +19,11 @@ function draw(){
         flowers[i].show();
         flowers[i].move();
 
-        if (flowers[i].x > width || flowers[i].x < 0) {
+        if ((flowers[i].x + flowers[i].r) > width || (flowers[i].x - flowers[i].r)< 0) {
             edge = true;
         }
 
-        if (flowers[i].y > height){
+        if ((flowers[i].y + flowers[i].r) > height){
             lost = true;
         }
     }
@@ -37,19 +37,32 @@ function draw(){
         btn = createElement("h2", "YOU WIN");
     }
 
-    for (var i = 0; i < drops.length; i++){
+    for (var i = drops.length-1; i >= 0; i--){
         drops[i].show();
         drops[i].move();
         for (var j = 0; j < flowers.length; j++){
             if (drops[i].hits(flowers[j])) {
                 flowers[j].bye();
-                // console.log("YOHOO");
+                drops[i].bye();
             }
+        
             if (flowers[j].toDelete){
                 flowers.splice(j, 1);
             }
         }
     }
+    if (ship.x > width){
+        ship.x = width;
+    } else if (ship.x < 0){
+        ship.x = 0;
+    }
+    
+    for (var i = 0; i < drops.length; i++){
+        if (drops[i].toDelete){
+            drops.splice(i, 1);
+        }
+    }
+
     if (lost){
         flowers.splice(0, flowers.length);
         delete ship.show;
@@ -75,12 +88,13 @@ function keyReleased() {
 
 function keyPressed(){
     if (key === ' '){
-        var drop = new Drop(ship.x, height);
+        var drop = new Drop(ship.x, height-26);
         drops.push(drop);
     }
     if (keyCode == RIGHT_ARROW){
         ship.setDir(1);
-    } else if (keyCode == LEFT_ARROW) {
+    }
+    if (keyCode == LEFT_ARROW) {
         ship.setDir(-1);
     }
     

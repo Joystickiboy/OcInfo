@@ -3,6 +3,7 @@ function Drop(x, y){
     this.x = x;
     this.y = y;
     this.r = 4;
+    this.bye = false;
 
     this.show = function(){
         noStroke();
@@ -21,5 +22,9 @@ function Drop(x, y){
 
     this.move = function() {
         this.y = this.y -2;
+    }
+    
+    this.bye = function(){
+        this.toDelete = true;
     }
 }

@@ -22,7 +22,6 @@ function Cell(pos, r, c){
     this.mitosis = function (){
         this.pos.x += random(-this.r,this.r);
         var cellA = new Cell(this.pos, this.r*0.8, this.c);
-        // var cellB = new Cell(this.pos, this.r/2, this.c);
         return cellA;
     }
 

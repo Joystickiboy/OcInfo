@@ -2,13 +2,9 @@ var cells = [];
 
 function setup(){
 	createCanvas(800,800);
-	cells.push(new Cell);
-	cells.push(new Cell);
-	cells.push(new Cell);
-	cells.push(new Cell);
-	cells.push(new Cell);
-	cells.push(new Cell);
-	cells.push(new Cell);
+	for (var i = 0; i <= 10; i++){
+		cells.push(new Cell);
+	}
 }
 
 

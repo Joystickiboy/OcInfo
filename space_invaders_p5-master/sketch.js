@@ -45,9 +45,7 @@ function draw(){
                 flowers[j].bye();
                 drops[i].bye();
             }
-            if (drops[i].toDelete){
-                drops.splice(i, 1);
-            }
+        
             if (flowers[j].toDelete){
                 flowers.splice(j, 1);
             }
@@ -59,6 +57,12 @@ function draw(){
         ship.x = 0;
     }
     
+    for (var i = 0; i < drops.length; i++){
+        if (drops[i].toDelete){
+            drops.splice(i, 1);
+        }
+    }
+
     if (lost){
         flowers.splice(0, flowers.length);
         delete ship.show;

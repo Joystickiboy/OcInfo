@@ -8,7 +8,7 @@ function Cell(pos, r, c){
 
 	// this.pos = pos.copy() || createVector(random(width), random(height));
     this.r = r || 80;
-    this.c = c || color(random(50, 255), random(0, 100), random(50, 255), 90);
+    this.c = c || color(random(100, 255), random(100, 250), random(120, 255), 150);
 
     this.clicked = function(x, y) {
         var d = dist(this.pos.x, this.pos.y, x, y);

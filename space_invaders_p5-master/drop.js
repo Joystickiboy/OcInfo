@@ -1,9 +1,10 @@
 // WATERDROP OBJECT
-function Drop(x, y){
+function Drop(x, y, v){
     this.x = x;
     this.y = y;
     this.r = 4;
     this.bye = false;
+    this.alwaysTrue;
 
     this.show = function(){
         noStroke();
@@ -26,5 +27,8 @@ function Drop(x, y){
     
     this.bye = function(){
         this.toDelete = true;
+    }
+    this.alwaysOn = function(){
+        this.alwaysTrue = true;
     }
 }

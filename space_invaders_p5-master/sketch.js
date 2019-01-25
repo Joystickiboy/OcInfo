@@ -15,6 +15,9 @@ function draw(){
     ship.show();
     ship.move();
     let edge = false;
+    for (var i = drops.length-1; i >= 0; i--) {
+        drops[i].alwaysTrue;
+    }
     for (var i = 0; i < flowers.length; i++){
         flowers[i].show();
         flowers[i].move();

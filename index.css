@@ -85,10 +85,17 @@ button:focus{
     width: 20%;
 }
 #supplements2{
+    height: 100%;
     display: inline-block;
     width: 20%;
 }
 #supplements3{
+    height: 100%;
+    display: inline-block;
+    width: 20%;
+}
+#supplements4{
+    height: 100%;
     display: inline-block;
     width: 20%;
 }

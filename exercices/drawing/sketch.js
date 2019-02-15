@@ -1,3 +1,5 @@
+let r = 20;
+
 function setBlue(){
     colour1 = 0;
     colour2 = 0;
@@ -12,18 +14,22 @@ function setWhite(){
     colour1 = 255;
     colour2 = 255;
     colour3 = 255;
+    r = 50;
 }
 function getColour(){
     colour1 = document.getElementById("R").value;
     colour2 = document.getElementById("G").value;
     colour3 = document.getElementById("B").value;
 }
+function getWidth(){
+    r = document.getElementById("Width").value;
+}
 
-let colour1 = 255;
-let colour2 = 255;
-let colour3 = 255;
+let colour1 = 0;
+let colour2 = 0;
+let colour3 = 0;
 
-let fr = 144;
+let fr = 60;
 
 function setup(){
     frameRate(fr);
@@ -34,7 +40,6 @@ function setup(){
 function draw(){
     if (mouseIsPressed){
         fill(colour1, colour2, colour3);
-        noStroke();
-        ellipse(mouseX, mouseY, 20, 20);
+        ellipse(mouseX, mouseY, r);
     }
 }

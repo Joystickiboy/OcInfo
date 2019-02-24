@@ -80,10 +80,22 @@ button:focus{
 	transition: height 0.2s linear 0s;
 }
 #supplements{
+    height: 100%;
     display: inline-block;
-    width: 45%;
+    width: 20%;
 }
 #supplements2{
+    height: 100%;
     display: inline-block;
-    width: 40%;
+    width: 20%;
+}
+#supplements3{
+    height: 100%;
+    display: inline-block;
+    width: 20%;
+}
+#supplements4{
+    height: 100%;
+    display: inline-block;
+    width: 20%;
 }

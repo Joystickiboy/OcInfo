@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>PINGU</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="m08_D.css">
+        <script>
+            "use strict";
+			let x = 100;
+			let y = 50;
+			let value;
+			let width = 290;
+			let height = 421;
+            function moveRight(){
+                x += 10;
+                document.getElementById("pinguin").style.left = x + "px";
+            }
+            function moveLeft(){
+                x -= 10;
+                document.getElementById("pinguin").style.left = x + "px";
+            }
+            function moveUp(){
+                y -= 10;
+                document.getElementById("pinguin").style.top = y + "px";
+            }
+            function moveDown(){
+                y += 10;
+                document.getElementById("pinguin").style.top = y + "px";
+			}
+			function smaller(){
+				width -= width*10/100;
+				height -= height*10/100;
+				document.getElementById("pinguin").style.width = width + "px";
+				document.getElementById("pinguin").style.height = height + "px";
+			}
+			function bigger(){
+				width += width*10/100;
+				height += height*10/100;
+				document.getElementById("pinguin").style.width = width + "px";
+				document.getElementById("pinguin").style.height = height + "px";
+			}
+        </script>
+    </head>
+
+    <body>
+        <img src="images/pingouin_grand.png" id="pinguin">
+        <button onclick="moveRight()">Bouger Pingouin vers la droite</button>
+        <button onclick="moveLeft()">Bouger Pingouin vers la gauche</button>
+        <button onclick="moveUp()">Bouger Pingouin vers le haut</button>
+        <button onclick="moveDown()">Bouger Pingouin vers le bas</button>
+        <button onclick="smaller()">Réduire taille pingouin</button>
+        <button onclick="bigger()">Agrandir taille pingouin</button>
+    </body>
+</html>

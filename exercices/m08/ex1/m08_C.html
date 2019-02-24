@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>PINGU</title>
+        <meta charset="utf-8">
+        <script>
+            "use strict";
+            function premierePartie(){
+                let prenom = document.getElementById("prenom").value;
+                let nom = document.getElementById("nom").value;
+                document.getElementById("prenom_res").innerHTML = prenom+" "+nom+", vous pouvez commencer la partie";
+            }
+        </script>
+    </head>
+
+
+
+    <body>
+        <div id="prenom_res">Entrez votre prénom pour commencer la première partie: </div>
+        <input id="prenom" maxlength="30" value="Steve">
+        <input id="nom" maxlength="30" onkeypress="if(event.key=='Enter') premierePartie()" value="Anderson">
+        <button onclick="premierePartie()">Entrer le prénom et le nom de vous</button>
+    </body>
+</html>

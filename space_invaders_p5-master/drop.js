@@ -1,5 +1,5 @@
 // WATERDROP OBJECT
-function Drop(x, y){
+function Drop(x, y, v){
     this.x = x;
     this.y = y;
     this.r = 4;

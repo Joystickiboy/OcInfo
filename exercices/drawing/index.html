@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="../lib/p5.js"></script>
+        <script src="../lib/p5.dom.js"></script>       
+        <script src="sketch.js"></script>       
+    </head>
+    <body>
+        <style type = text/css>body {background-color: grey}</style>
+        <button id="blu" onclick="setBlue()">BLUE</button>
+        <button id="red" onclick="setRed()">RED</button>
+        <button id="white" onclick="setWhite()">Erase</button><!--Background is white so setWhite is Eraser-->
+        <input id="R">
+        <input id="G">
+        <input id="B">
+        <button onclick="getColour();">Set Colours</button>
+        <p>R, G, B</p>
+        <input id="Width">
+        <button onclick="getWidth();">Set Width</button>
+    </body>
+</html>

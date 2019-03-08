@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" onclick='afficherCoord(event);'>
+<html lang="fr">
 
     <head>
         <meta charset="utf-8">
@@ -7,30 +7,37 @@
 
         <link rel="stylesheet" type="text/css" href="m08_D.css">
 
+		<!-- x = 246; y = 324 -->
         <script>
 
             "use strict";
-
+			let pingouinX;
+			let pingouinY;
             var sourisX;
             var sourisY;
 
-            function bouge(coord) {
-                sourisX = coord.clientX;
-                sourisY = coord.clientY;
+			function bouge(coord) {
+                sourisX= coord.clientX;
+                sourisY= coord.clientY;
             }
 
-            function afficherCoord(souris){
+			function adapterCoord(){
+				pingouinX = sourisX - 60;
+                pingouinY = sourisY - 105;
+			}
+
+			function bougerPingouin(souris) {
                 bouge(souris);
-                alert(
-                    "La souris était placée au moment du clic aux coordonnées x = " +
-                    sourisX + " [px] et y = " + sourisY + " [px]");
+                adapterCoord();
+                document.getElementById("pinguin").style.left = pingouinX + "px";
+                document.getElementById("pinguin").style.top = pingouinY + "px";
             }
-
+		
         </script>
     </head>
 
     <body>
-		<img src="images/pingouin_grand.png" id="pinguin">
+		<img src="images/pingouin_grand.png" id="pinguin" onmousemove="bougerPingouin(event)">
     </body>
 
 </html>

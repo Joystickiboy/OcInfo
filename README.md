@@ -2,7 +2,7 @@
 ## Git OcInfo
 
 Just a fun little git repo with some school homework and some external activities I like to do whilst bored
-## m08_ex1_E.html important pour test
+## m08_ex1_E.html + ex_G important pour test
 ### Need to be fixed :
 * Perlin noise doesn't work
 * Bouncy balls needs to be made into object oriented

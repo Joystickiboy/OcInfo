@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>PINGU</title>
+
+        <link rel="stylesheet" href="styles_HI.css">
+
+        <script>
+			"use strict";
+			let i = 0;
+			/* function changerCouleur(id){
+				if (i%2 == 0) { 
+					document.getElementById(id).style.backgroundColor="#BEBEBE";
+				 } 
+				else {
+					document.getElementById(id).style.backgroundColor="white";
+				}
+				i++; 
+			} */
+
+			function afficheImages(){
+				document.getElementById("1_1").innerHTML = "<img src='images/5_1.jpg'>";
+				document.getElementById("1_2").innerHTML = "<img src='images/5_2.jpg'>";
+				document.getElementById("1_3").innerHTML = "<img src='images/5_3.jpg'>";
+				document.getElementById("1_4").innerHTML = "<img src='images/5_4.jpg'>";
+			}
+
+        </script>
+    </head>
+
+    <body>
+		<table>
+			<tr>
+				<td id="1_1" onclick="changerCouleur('1_1')">&nbsp;</td>
+				<td id="1_2" onclick="changerCouleur('1_2')">&nbsp;</td>
+			</tr>
+			<tr>
+				<td id="1_3" onclick="changerCouleur('1_3')">&nbsp;</td>
+				<td id="1_4" onclick="changerCouleur('1_4')">&nbsp;</td>
+			</tr>
+		</table>
+		<div class="bouton">
+			
+			<button onclick="afficheImages()">Afficher les images</button>
+		</div>
+    </body>
+
+</html>
+
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" onclick='afficherCoord(event);'>
+
+    <head>
+        <meta charset="utf-8">
+        <title>PINGU</title>
+
+        <link rel="stylesheet" type="text/css" href="m08_D.css">
+
+        <script>
+
+            "use strict";
+
+            var sourisX;
+            var sourisY;
+
+            function bouge(coord) {
+                sourisX = coord.clientX;
+                sourisY = coord.clientY;
+            }
+
+            function afficherCoord(souris){
+                bouge(souris);
+                alert(
+                    "La souris était placée au moment du clic aux coordonnées x = " +
+                    sourisX + " [px] et y = " + sourisY + " [px]");
+            }
+
+        </script>
+    </head>
+
+    <body>
+		<img src="images/pingouin_grand.png" id="pinguin">
+    </body>
+
+</html>
+
+
+

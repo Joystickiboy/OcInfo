@@ -1,24 +1,38 @@
+
 body{
 	background-color: #a8bcea;
+	/* outline: red 1px solid; */
 }
 header{
+	/* outline: lime 2px solid; */
 	text-align: center;
 	color: #27496d;
 }
 footer{
+	/* outline: lime 1px solid; */
 	position: fixed;
 	bottom: 20px;
 	width:100%;
 	display: block;
 	text-align: center;
 }
-#textEdit{
+#mainWidget{
+	text-align: center;
 	position: absolute;
 	top: 40%;
 	width: 100%;
-	/*outline: 1px green solid;*/
+}
+#textEdit{
 	float: left;
+	margin-left: 80px;
+	/* outline: orange solid 1px; */
+	height: 87px;
+}
+#penduOuPas{
+	display: inline-block;
+	width: 50%;
 	text-align: center;
+	/* outline: blue solid 2px; */
 }
 .td{
 	padding: 2px;
@@ -44,4 +58,9 @@ button:hover {
 button:active {
   background-color: #27496d;
   text-shadow: -1px 1px #193047;
+}
+em{
+	margin-left: 5px; 
+	font-style: normal;
+	font-weight: bold;
 }

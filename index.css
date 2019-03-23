@@ -33,7 +33,7 @@ h1{
     text-align: center;
     display: inline-block;
     padding: 13px 17px;
-    text-decoration: none;
+	text-decoration: none;
 }
 .navbar a:hover{
     background-color: lightgrey;
@@ -78,24 +78,4 @@ button:focus{
 	top: 45px;
 	overflow: hidden;
 	transition: height 0.2s linear 0s;
-}
-#supplements{
-    height: 100%;
-    display: inline-block;
-    width: 20%;
-}
-#supplements2{
-    height: 100%;
-    display: inline-block;
-    width: 20%;
-}
-#supplements3{
-    height: 100%;
-    display: inline-block;
-    width: 20%;
-}
-#supplements4{
-    height: 100%;
-    display: inline-block;
-    width: 20%;
 }

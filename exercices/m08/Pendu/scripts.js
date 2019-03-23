@@ -2,6 +2,8 @@
 
 let nbPerte = 0;
 let nbGagne = 0;
+let limitePerte = 8;
+let wtf = true;
 
 function setLettre(i){
 	let x = $$(i);
@@ -10,11 +12,15 @@ function setLettre(i){
 }
 
 function addPerte(){
-	console.log(nbPerte);
-	nbPerte++;
-	if (nbPerte == 8){
-		let footer = $$("footer");
-		footer.innerHTML = "<p>VOUS AVEZ PERDU HAHAHAHA</p>";
+	if (wtf){
+		console.log(nbPerte);
+		nbPerte++;
+		let nb = $$("nb");
+		nb.innerHTML = nbPerte;
+		if (nbPerte == limitePerte){
+			let footer = $$("footer");
+			footer.innerHTML = "<p>VOUS AVEZ PERDU HAHAHAHA</p>";
+		}
 	}
 }
 
@@ -38,19 +44,22 @@ for (let i = 0; i<nomChoisi.length; i++){
 
 let tdNomChoisi = nomChoisi.split('');
 
+let max = $$("max");
+max.innerHTML = limitePerte;
+
 function btnClicked(x){
 	for (let i = 0; i< tdNomChoisi.length; i++){
 		if (x == tdNomChoisi[i]){
 			setLettre(i);
+			wtf = false;
 			nbGagne++;
 			break;
-		} else {
-			null;
 		}
 	}
+	addPerte();
 	if (nbGagne == tdNomChoisi.length){
 		let footer = $$("footer");
 		footer.innerHTML = "Vous avez GAGNÉ !!!";
 	}
-	addPerte();
+	wtf = true;
 }

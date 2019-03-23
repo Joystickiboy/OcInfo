@@ -11,7 +11,8 @@
 			"use strict";
 			
 			function memoriser(id){
-				
+				console.log(id+".");
+				document.getElementById(id).innerHTML = '<img src="images/'+id+'.jpg">';
 			}
 
         </script>
@@ -20,12 +21,12 @@
     <body>
 		<table>
 			<tr>
-				<td id="1_1">&nbsp;</td>
-				<td id="1_2">&nbsp;</td>
+				<td id="5_1" onclick="memoriser(this.id)">&nbsp;</td>
+				<td id="5_2" onclick="memoriser(this.id)">&nbsp;</td>
 			</tr>
 			<tr>
-				<td id="1_3">&nbsp;</td>
-				<td id="1_4">&nbsp;</td>
+				<td id="5_3" onclick="memoriser(this.id)">&nbsp;</td>
+				<td id="5_4" onclick="memoriser(this.id)">&nbsp;</td>
 			</tr>
 		</table>
     </body>

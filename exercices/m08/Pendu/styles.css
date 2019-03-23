@@ -15,7 +15,6 @@ footer{
 #textEdit{
 	position: absolute;
 	top: 40%;
-	height: 10%;
 	width: 100%;
 	/*outline: 1px green solid;*/
 	float: left;
@@ -26,14 +25,6 @@ footer{
 	margin: 2px;
 	display: inline-block;
 	border-bottom: red 3px solid;
-	height: 40px;
-	width: 40px;
-}
-.td2{
-	padding: 2px;
-	margin: 2px;
-	display: inline-block;
-	border-bottom: green 3px solid;
 	height: 40px;
 	width: 40px;
 }

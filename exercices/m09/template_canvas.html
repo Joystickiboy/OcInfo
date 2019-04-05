@@ -14,36 +14,13 @@
 				ctx = document.getElementById("canvasId");
 				c = ctx.getContext("2d");
 			}
-
-			function rectangle(){
-				c.beginPath();
-				c.moveTo(50, 50);
-				c.lineTo(50, 60);
-				c.lineTo(80, 60);
-				c.lineTo(80, 50);
-				c.closePath();
-				c.fillStyle="red";
-				c.fill();
-			}
-
-			function triangle(){
-				c.beginPath();
-				c.moveTo(140, 200);
-				c.lineTo(120, 240);
-				c.lineTo(160, 240);
-				c.closePath();
-				c.fillStyle="blue";
-				c.fill();
-
-				rectangle();
-			}
             
             //Main
 
             
 		</script>
     </head>
-    <body onload="init();triangle();">
+    <body onload="init();">
     
 		<canvas id="canvasId" width="450" height="450"></canvas>
 		

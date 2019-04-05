@@ -73,7 +73,13 @@ function draw(){
         delete ship.setDir;
         txt = createElement("h1", "YOU LOSE");
         resetSketch();
-    }
+	}
+	
+	for (let i = 0; i < drops.length; i++){
+		if (drops[i].y < 0){
+			drops.splice(i, 1);
+		}
+	}
 }
 
 function resetSketch(){

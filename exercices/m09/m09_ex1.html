@@ -9,7 +9,11 @@
 			let c;
 
             
-            //Fonctions
+			//Fonctions
+			function degToRad(deg){
+				return deg * Math.PI / 180;
+			}
+			
 			function init(){
 				ctx = document.getElementById("canvasId");
 				c = ctx.getContext("2d");
@@ -24,6 +28,8 @@
 				c.closePath();
 				c.fillStyle="red";
 				c.fill();
+
+				maison();
 			}
 
 			function triangle(){
@@ -37,6 +43,18 @@
 
 				rectangle();
 			}
+
+			function maison(){
+				c.beginPath();
+				c.moveTo(350, 350);
+				c.lineTo(390, 350);
+				c.lineTo(390, 310);
+				c.lineTo(370, 270);
+				c.lineTo(350, 310);
+				c.closePath();
+				c.strokeStyle="green";
+				c.stroke();
+			}
             
             //Main
 
@@ -45,7 +63,7 @@
     </head>
     <body onload="init();triangle();">
     
-		<canvas id="canvasId" width="450" height="450"></canvas>
+		<canvas id="canvasId" width="450" height="450" style="border: solid 1px black"></canvas>
 		
 	</body>
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>module 9 : exercice 2</title>
+
+        <script>
+
+            "use strict";
+
+            //déclaration des variables globales liées à la balise <canvas>
+
+            let c, ctx; 
+
+            //La fonction suivante initialise la balise <canvas>.
+
+            function initialiser(){
+				ctx = document.getElementById("canvasID");
+				c = ctx.getContext("2d");
+				dessiner();
+            }
+
+            function dessinerMaison(){
+				let x = Math.floor(Math.random()*700) +20;
+				let y = Math.floor(Math.random()*400) +80;
+				let r = Math.floor(Math.random()*255) + 1;
+				let g = Math.floor(Math.random()*255) + 1;
+				let b = Math.floor(Math.random()*255) + 1;
+				c.beginPath();
+				c.moveTo(x, y);
+				c.lineTo(x+40, y);
+				c.lineTo(x+40, y-40);
+				c.lineTo(x+20, y-80);
+				c.lineTo(x, y-40);
+				c.closePath();
+				c.fillStyle="rgb("+r+","+g+","+b+")";
+				c.fill();
+				setInterval(20);
+            }
+
+            //La fonction suivante ne reçoit aucun paramètre et ne retourne rien.
+            //Elle appelle toutes les 20 millisecondes la fonction permettant
+            //de dessiner la maison.
+
+            function dessiner(){
+				let t = setInterval(dessinerMaison, 200);
+            }
+
+        </script>
+
+    </head>
+
+    <!-- appel des fonctions d'initialisation et de dessin -->
+
+    <body onload="initialiser()">
+        <div>
+
+            <canvas id='canvasID' width='800' height='500'
+                style='left:10px;top:10px;border: medium double black'>
+            </canvas>
+
+        </div>
+
+    </body>
+</html>

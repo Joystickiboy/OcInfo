@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>module 9 : exercice 3</title>
+
+        <script>
+
+            "use strict";
+
+            var c;
+            var width,height;
+
+
+            function initialiser(){
+				c = document.getElementById("canvasID").getContext("2d");
+				width = 800;
+				height = 500;
+				console.log(width+"--"+height);
+            }
+
+			function triArith(a,b) {return a-b}
+
+            var cote = 30;
+            var tailleVillage = 150;
+            var nbreMaisons = 15;
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
+
+
+            function dessinerMaison(x,y){
+				let r = Math.floor(Math.random()*255) + 1;
+				let g = Math.floor(Math.random()*255) + 1;
+				let b = Math.floor(Math.random()*255) + 1;
+				c.beginPath();
+				c.moveTo(x, y);
+				c.lineTo(x+40, y);
+				c.lineTo(x+40, y-40);
+				c.lineTo(x+20, y-80);
+				c.lineTo(x, y-40);
+				c.closePath();
+				c.fillStyle="rgb("+r+","+g+","+b+")";
+				c.fill();
+			}
+
+            function dessinerVillage(){
+				let x, y;
+				let xR, yR;
+
+				let tMaisonsY = new Array;
+				let tMaisonsX = new Array;
+				let tMaisons = new Array;
+
+				yR = rand(0, height-tailleVillage);
+				xR = rand(0, width-tailleVillage);
+
+				for (let i = 0; i < nbreMaisons; i++){
+					tMaisonsX.push(rand(xR, xR+tailleVillage-40));
+					tMaisonsY.push(rand(yR+80, yR+tailleVillage));
+				}
+
+				tMaisonsY.sort(triArith);
+
+				for (let i = 0; i < nbreMaisons; i++){
+					dessinerMaison(tMaisonsX[i], tMaisonsY[i]);
+				}
+            }
+
+
+
+        </script>
+
+    </head>
+
+    <!-- appel de la fonction adéquate depuis la balise body -->
+
+    <body onload="initialiser()">
+
+        <div>
+
+            <canvas id='canvasID' width='800' height='500'
+                style='left:10px;top:10px;border: medium double black'>
+            </canvas>
+
+        </div>
+
+        <!-- appel de la fonction adéquate lors d'un clic sur le bouton-->
+
+        <button onclick="dessinerVillage()">Dessiner un village</button>
+
+    </body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let ctx;
+			let c;
+			let x, y;
+			x = 1;
+			y = 81;
+
+            //Fonctions
+			function init(){
+				ctx = document.getElementById("canvasId");
+				c = ctx.getContext("2d");
+				dessiner();
+			}
+
+		function dessiner(){
+			let t = setInterval(maison, 20);
+		}
+
+			function maison(){
+				c.clearRect(0,0,450,450);
+				c.beginPath();
+				c.moveTo(x, y);
+				c.lineTo(x+40, y);
+				c.lineTo(x+40, y-40);
+				c.lineTo(x+20, y-80);
+				c.lineTo(x, y-40);
+				c.closePath();
+				c.strokeStyle="green";
+				c.fillStyle="green";
+				c.fill();
+				c.stroke();
+				x++;
+				y++;
+			}
+            
+            //Main
+
+            
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="450" height="450" style="border: solid 1px black"></canvas>
+		
+	</body>
+</html>

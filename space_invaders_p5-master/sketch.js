@@ -3,17 +3,27 @@ let flowers = [];
 let drops = [];
 let lost = false;
 let btn;
+perdu.playMode('restart');
+
+function preload(){
+	soundFormats('wav', 'm4a');
+	mySound = loadSound("pchiou.m4a");
+	boom = loadSound("boom.m4a");
+	victoire = loadSound("victoire.m4a");
+	perdu = loadSound("perdu.m4a");
+}
 
 function setup(){
     createCanvas(600, 400);
-    resetSketch();
+	resetSketch();
+	//mySound.setVolume(0.2);
     //drop = new Drop(width/2, height/2);
 }
 
 function draw(){
     background(250, 128, 114);
     ship.show();
-    ship.move();
+	ship.move();
     let edge = false;
     for (var i = drops.length-1; i >= 0; i--) {
         drops[i].alwaysTrue;
@@ -35,10 +45,6 @@ function draw(){
             flowers[i].shiftDown();
         }
     }
-    
-    if (flowers.length == 0){
-        btn = createElement("h2", "YOU WIN");
-    }
 
     for (var i = drops.length-1; i >= 0; i--){
         drops[i].show();
@@ -50,7 +56,12 @@ function draw(){
             }
         
             if (flowers[j].toDelete){
-                flowers.splice(j, 1);
+				flowers.splice(j, 1);
+				boom.play();
+				if (flowers.length == 0){
+					victoire.play();
+					btn = createElement("h2", "YOU WIN");
+				}
             }
         }
     }
@@ -64,14 +75,16 @@ function draw(){
         if (drops[i].toDelete){
             drops.splice(i, 1);
         }
-    }
+	}
 
     if (lost){
         flowers.splice(0, flowers.length);
         delete ship.show;
         delete ship.move;
-        delete ship.setDir;
-        txt = createElement("h1", "YOU LOSE");
+		delete ship.setDir;
+		perdu.play();
+		perdu = 0;
+		txt = createElement("h1", "YOU LOSE");
         resetSketch();
 	}
 	
@@ -98,7 +111,8 @@ function keyReleased() {
 function keyPressed(){
     if (key === ' '){
         var drop = new Drop(ship.x, height-26);
-        drops.push(drop);
+		drops.push(drop);
+		mySound.play();
     }
     if (keyCode == RIGHT_ARROW){
         ship.setDir(1);

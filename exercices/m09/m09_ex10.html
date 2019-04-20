@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let ctx;
+			let c;
+			var pale=80 ;
+            
+            //Fonctions
+			function init(){
+				ctx = document.getElementById("canvasId");
+				c = ctx.getContext("2d");
+			}
+            
+			function dessinerGirouette(){
+				ctx.beginPath();
+				ctx.moveTo(-(pale/2),-pale);
+				ctx.lineTo((pale/2),pale);
+				ctx.lineTo(-(pale/2),pale);
+				ctx.lineTo((pale/2),-pale);
+				ctx.lineTo(-(pale/2),-pale);
+				ctx.moveTo(-pale,-(pale/2));
+				ctx.lineTo(pale,(pale/2));
+				ctx.lineTo(pale,-(pale/2));
+				ctx.lineTo(-pale,(pale/2));
+				ctx.closePath();
+				ctx.fillStyle='yellow';
+				ctx.fill();
+				ctx.strokeStyle='orange';
+				ctx.stroke();
+			}
+            //Main
+
+            
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="450" height="450"></canvas>
+		
+	</body>
+</html>

@@ -8,24 +8,12 @@
             //Variables Globales
 			let ctx;
 			let c;
-			var pale=20 ;
+			var pale=90 ;
 			let dAngle = 0;
 			let angle = 0.05;
-
 			let t = setInterval(dessiner, 20);
-
-			let z = setInterval(move, 100);
-
 			let width = 450;
 			let height = 450;
-
-			let x, y;
-			x = 80;
-			y = 180;
-
-			let xG, yG;
-			xG = x +20;
-			yG = y -80;
             
             //Fonctions
 			function init(){
@@ -33,19 +21,10 @@
 				c = ctx.getContext("2d");
 			}
 
-			function move(){
-				c.translate(1, 1);
-			}
-
 			function dessiner(){
 				c.clearRect(0,0, width, height);
-
 				c.save();
-				dessinerMaison();
-				c.restore();
-
-				c.save();
-				c.translate(xG, yG);
+				c.translate(100, 100);
 				c.rotate(dAngle);
 				dessinerGirouette();
 				c.restore();
@@ -67,21 +46,6 @@
 				c.fillStyle='yellow';
 				c.fill();
 				c.strokeStyle='orange';
-				c.stroke();
-			}
-
-			function dessinerMaison(){
-				c.clearRect(0,0,450,450);
-				c.beginPath();
-				c.moveTo(x, y);
-				c.lineTo(x+40, y);
-				c.lineTo(x+40, y-40);
-				c.lineTo(x+20, y-80);
-				c.lineTo(x, y-40);
-				c.closePath();
-				c.strokeStyle="green";
-				c.fillStyle="green";
-				c.fill();
 				c.stroke();
 			}
             //Main

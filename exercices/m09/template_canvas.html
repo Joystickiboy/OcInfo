@@ -8,21 +8,38 @@
 			let ctx;
 			let c;
 
-            
+            /*
+			c.fillStyle="rgb("+r+","+g+","+b+")";
+
+
+
+			*/
             //Fonctions
 			function init(){
 				ctx = document.getElementById("canvasId");
 				c = ctx.getContext("2d");
 			}
+
+			function degToRad(deg){
+				return deg * Math.PI / 180;
+			}
+
+			function radToDeg(rad){
+				return rad / Math.PI * 180;
+			}
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
             
             //Main
-
             
 		</script>
     </head>
     <body onload="init();">
     
-		<canvas id="canvasId" width="450" height="450"></canvas>
+		<canvas id="canvasId" width="450" height="450" style="border: solid 1px black"></canvas>
 		
 	</body>
 </html>

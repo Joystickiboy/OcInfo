@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let width, height;
+			let c;
+			let x,y;
+			x = 0;
+			y = 200;
+			let angle, dAngle;
+			angle = 0;
+			dAngle = 0.04;
+			let dx = 1;
+			let dt = 20;
+            /*
+			c.fillStyle="rgb("+r+","+g+","+b+")";
+
+
+
+			*/
+            //Fonctions
+			function init(){
+				var canvas = document.getElementById("canvasId");
+				c = canvas.getContext("2d");
+				width = parseInt(canvas.width);
+				height = parseInt(canvas.height);
+				lancerAnimation();
+			}
+
+			function degToRad(deg){
+				return deg * Math.PI / 180;
+			}
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
+
+			function lancerAnimation(){
+				let t = setInterval(dessiner, dt);
+			}
+
+			function dessiner(){
+				c.clearRect(0,0, width, height);
+				c.save();
+					c.translate(x,y);
+					c.rotate(angle);
+					dessinerMaison();
+				c.restore();
+				x += dx;
+				angle += dAngle;
+			}
+
+			function dessinerMaison(){
+				c.beginPath();
+				c.moveTo(+25, +25);
+				c.lineTo(-25, +25);
+				c.lineTo(-25, -25);
+				c.lineTo(+25, -25);
+				c.closePath();
+				c.stroke();
+				c.beginPath();
+				c.moveTo(+25, +25);
+				c.lineTo(0, +75);
+				c.lineTo(-25, +25);
+				c.closePath();
+				c.stroke();
+			}
+            
+            //Main
+
+            
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="550" height="550" style="border: solid 1px black"></canvas>
+		
+	</body>
+</html>

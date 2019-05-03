@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let ctx;
+			let c;
+			let mod = 0;
+			let t;
+            
+            //Fonctions
+			function init(){
+				ctx = document.getElementById("canvasId");
+				c = ctx.getContext("2d");
+			}
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
+
+			function dessinerCercles(){
+				let x,y,w,r,b;
+				x = rand(0, 480);
+				y = rand(0, 320);
+				w = rand(0, 100);
+				r = rand(20, 255);
+				b = rand(20, 255);
+
+				c.beginPath();
+				c.arc(x, y, w, 0, 2 * Math.PI);
+				c.closePath();
+				c.fillStyle="rgb("+r+","+255+","+b+")";
+				c.fill();
+			}
+
+			function doIt(){
+				let btn = document.getElementById("button");
+				if (mod%2 == 0){
+					c.save();
+						t = setInterval(dessinerCercles, 100);
+					c.restore();
+					btn.innerHTML = "STOP";
+				} else {
+					clearInterval(t);
+					btn.innerHTML = "Dessiner";
+				}
+				mod++;
+			}
+            //Main
+
+            
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="480" height="320" style="border: solid 1px black"></canvas>
+		<br>
+		<button id="button" onclick="doIt()">Dessiner</button>
+	</body>
+</html>

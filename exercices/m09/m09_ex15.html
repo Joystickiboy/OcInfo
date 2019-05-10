@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let ctx;
+			let c;
+			let r,g,b, p;
+			let caca = 1;
+
+            /*
+			c.fillStyle="rgb("+r+","+g+","+b+")";
+
+			Cercle complet : 
+
+			c.beginPath();
+			c.arc(x,y,r, sA, eA);
+			c.closePath();
+
+			*/
+
+            //Fonctions
+			function init(){
+				ctx = document.getElementById("canvasId");
+				c = ctx.getContext("2d");
+
+				c.translate(300, 300);
+				p = new Pacman(-200, 0, 40);
+				let t = setInterval(doIt, 10);
+			}
+
+			function doIt(){
+				p.move();
+			}
+
+			function degToRad(deg){
+				return deg * Math.PI / 180;
+			}
+
+			function radToDeg(rad){
+				return rad / Math.PI * 180;
+			}
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
+
+			function Pacman(x, y, ra){
+				this.angle1 = 1.5*Math.PI;
+				this.dAngle = degToRad(0.5);
+				this.angle2 = 0;
+
+				this.show = function(){
+					enormeCercle();
+					r = 255;
+					g = 220;
+					b = 0;
+					c.beginPath();
+					c.moveTo(x, y);
+					c.arc(x,y,ra, 0, 1.8*Math.PI);
+					c.fillStyle="rgb("+r+","+g+","+b+")";
+					c.fill();
+					c.closePath();
+				}
+
+				this.move = function(){
+					c.clearRect(-300,-300, 600, 600);
+					c.save();
+						c.rotate(this.angle1);
+						/*if (caca == 1){
+							c.save()
+							c.translate(-200, 0);
+							c.rotate(this.angle2);*/
+							this.show();
+							/*c.restore();
+						}*/
+					c.restore();
+
+					this.angle1 += this.dAngle;
+				}
+			}
+
+			function enormeCercle(){
+				c.beginPath();
+				c.arc(0, 0, 200, 0, 2*Math.PI);
+				c.stroke();
+				c.closePath();
+			}
+            
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="600" height="600" style="border: solid 1px black"></canvas>
+		
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<script>
+            "use strict";
+            //Variables Globales
+			let ctx;
+			let c;
+			let r,g,b;
+
+            /*
+			c.fillStyle="rgb("+r+","+g+","+b+")";
+			*/
+
+            //Fonctions
+			function init(){
+				ctx = document.getElementById("canvasId");
+				c = ctx.getContext("2d");
+			}
+
+			function degToRad(deg){
+				return deg * Math.PI / 180;
+			}
+
+			function radToDeg(rad){
+				return rad / Math.PI * 180;
+			}
+
+			function rand(min,max)
+			{
+				return Math.floor(Math.random()*(max-min+1)+min);
+			}
+
+			function dessinerCarre(){
+				c.beginPath();
+				c.moveTo(50, 50);
+				c.lineTo(50, 100);
+				c.lineTo(100, 100);
+				c.lineTo(100, 50);
+				c.fillStyle="rgb("+r+","+g+","+b+")";
+				c.fill();
+				c.closePath();
+			}
+
+			//Main
+			
+			let rouge = document.getElementsById("rouge");
+			let vert = document.getElementById("vert");
+			let bleu = document.getElementById("bleu");
+
+			function setRouge(){
+				r = 255;
+				g = 0;
+				b = 0;
+				dessinerCarre();
+			}
+
+			function setVert(){
+				r = 0;
+				g = 255;
+				b = 0;
+				dessinerCarre();
+			}
+
+			function setBleu(){
+				r = 0;
+				g = 0;
+				b = 255;
+				dessinerCarre();
+			}
+
+
+		</script>
+    </head>
+    <body onload="init();">
+    
+		<canvas id="canvasId" width="450" height="450" style="border: solid 1px black"></canvas>
+		<br>
+		<input type="radio" name="choix" id="rouge" onclick="setRouge();">rouge<br>
+		<input type="radio" name="choix" id="vert" onclick="setVert()">vert<br>
+		<input type="radio" name="choix" id="bleu" onclick="setBleu()">bleu<br>
+	</body>
+</html>

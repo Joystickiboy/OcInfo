@@ -7,9 +7,20 @@
             //Variables Globales
 			let ctx;
 			let c;
-			let r,g,b, p;
-			let caca = 1;
+			let r,g,b, t, p;
+			let angle = 0;
+			let dAngle = degToRad(0.5);
+			let dAngle2 = dAngle;
 
+			let angle2 = 0;
+			let isItTrue = false;
+			let modulo = 0;
+
+			let isItTrueAgain = false;
+
+			r=220;
+			g=255;
+			b=0;
             /*
 			c.fillStyle="rgb("+r+","+g+","+b+")";
 
@@ -26,13 +37,8 @@
 				ctx = document.getElementById("canvasId");
 				c = ctx.getContext("2d");
 
-				c.translate(300, 300);
-				p = new Pacman(-200, 0, 40);
-				let t = setInterval(doIt, 10);
-			}
-
-			function doIt(){
-				p.move();
+				c.translate(300,300);
+				animate();
 			}
 
 			function degToRad(deg){
@@ -48,53 +54,202 @@
 				return Math.floor(Math.random()*(max-min+1)+min);
 			}
 
-			function Pacman(x, y, ra){
-				this.angle1 = 1.5*Math.PI;
-				this.dAngle = degToRad(0.5);
-				this.angle2 = 0;
+			function enormeCercle(){
+				c.beginPath();
+				c.arc(0,0,200,0,Math.PI*2);
+				c.stroke();
+				c.closePath();
+			}
 
-				this.show = function(){
-					enormeCercle();
-					r = 255;
-					g = 220;
-					b = 0;
-					c.beginPath();
-					c.moveTo(x, y);
-					c.arc(x,y,ra, 0, 1.8*Math.PI);
-					c.fillStyle="rgb("+r+","+g+","+b+")";
-					c.fill();
-					c.closePath();
+			function animate(){
+				t = setInterval(animation, 10);
+			}
+
+			function animation(){
+				c.save();
+					c.rotate(angle);
+					pacman();
+				c.restore();
+				angle += dAngle;
+
+				if (isItTrue){
+					angle2 += dAngle2 * -1;
 				}
-
-				this.move = function(){
-					c.clearRect(-300,-300, 600, 600);
-					c.save();
-						c.rotate(this.angle1);
-						/*if (caca == 1){
-							c.save()
-							c.translate(-200, 0);
-							c.rotate(this.angle2);*/
-							this.show();
-							/*c.restore();
-						}*/
-					c.restore();
-
-					this.angle1 += this.dAngle;
+				if (isItTrueAgain){
+					angle2 += dAngle2 * 5;
+					isItTrue = false;
 				}
 			}
 
-			function enormeCercle(){
-				c.beginPath();
-				c.arc(0, 0, 200, 0, 2*Math.PI);
-				c.stroke();
-				c.closePath();
+			function overslow(){
+				if(modulo%2 == 0){
+					isItTrue = true;
+					isItTrueAgain = false;
+					modulo++;
+					let slow = document.getElementById("rotateSlow");
+					slow.innerHTML = "normal rotation"
+				} else {
+					isItTrue = false;
+					modulo++;
+					let slow = document.getElementById("rotateSlow");
+					slow.innerHTML = "slow rotation"
+				}
+			}
+
+			function overspeed(){
+				isItTrueAgain = true;
+			}
+
+			function pacman(){
+				c.save();
+					c.clearRect(-300,-300,600,600);
+					enormeCercle();
+					c.translate(-200,0);
+					c.rotate(angle2);
+					c.beginPath();
+					c.arc(0,0,50,0,Math.PI*1.8);
+					c.lineTo(0,0);
+					c.closePath();
+					c.fillStyle="yellow";
+					c.fill();
+				c.restore();
 			}
             
 		</script>
     </head>
     <body onload="init();">
     
-		<canvas id="canvasId" width="600" height="600" style="border: solid 1px black"></canvas>
+		<canvas id="canvasId" width="600" height="600" style="border: solid 1px black"></canvas> <br>
+		<button id="rotateSlow" onclick="overslow();">slow rotation</button>
+		<button id="rotateFast" onclick="overspeed();">OVERSPEED</button>
 		
 	</body>
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>module 9: exercice 15</title>
+<script>
+"use strict";
+//initialisation de la balise <canvas>
+var ctx,canvas;
+var width,height;
+function initialiser(){
+canvas=document.getElementById('canvasID');
+ctx=canvas.getContext('2d');
+width=parseInt(canvas.width);
+height=parseInt(canvas.height);
+}
+//déclaration et initialisation des variables globales
+//gérant les caractéristiques des figures et l'animation
+var alpha1=-20;
+var alpha2=20;
+var rayonTrajectoire=200;
+var couleur_pacman = 'yellow';
+var couleur_bord_pacman = 'black';
+var couleur_oeil = 'black';
+var couleur_orbite = 'black';
+var x_init=300;
+var y_init=300;
+var angleRevolution=0;
+var dAngleRevolution=0.5;
+var angleRotation=0;
+var dAngleRotation=0;
+var t;
+var dt=10;
+function angleDegRad(angle){
+return (Math.PI/180)*angle;
+}
+//conversion des angles du pacman
+function calculAngle(){
+alpha1=angleDegRad(alpha1);
+alpha2=angleDegRad(alpha2);
+}
+//déclaration des fonctions de dessin
+function effacer(){
+ctx.clearRect(0,0,width,height);
+}
+function dessinerOrbite(){
+ctx.beginPath();
+ctx.arc(0,0,rayonTrajectoire,0,2*Math.PI,false);
+ctx.closePath();
+ctx.strokeStyle = couleur_orbite;
+ctx.stroke();
+}
+function dessinerFondPacman(){
+ctx.beginPath();
+ctx.arc(0,0,50,alpha1,alpha2,true);
+ctx.lineTo(0,0);
+ctx.closePath();
+ctx.fillStyle = couleur_pacman;
+ctx.fill();
+ctx.strokeStyle = couleur_bord_pacman;
+ctx.stroke();
+}
+function dessinerOeil(){
+ctx.beginPath();
+ctx.arc(20,-25,5,0,2*Math.PI,true);
+ctx.closePath();
+ctx.fillStyle = couleur_oeil;
+ctx.fill();
+}
+function dessinerPacman(){
+dessinerFondPacman();
+dessinerOeil();
+}
+//de dessin, changements de référentiels, gestion
+//des variables liées aux changements de référentiels)
+function dessiner(){
+effacer();
+ctx.save();
+ctx.translate(x_init,y_init);
+dessinerOrbite();
+ctx.rotate(angleDegRad(angleRevolution));
+ctx.translate(-rayonTrajectoire,0);
+ctx.rotate(angleDegRad(angleRotation));
+dessinerPacman();
+ctx.restore();
+if (angleRevolution>=(3*360)) {
+clearInterval(t);
+}
+angleRevolution+=dAngleRevolution;
+angleRotation+=dAngleRotation;
+}
+//fonction annexe permettant de choisir le type de rotation
+function changerModeRotation(x){
+switch (x) {
+case 1:
+dAngleRotation=0;
+break;
+case 2:
+dAngleRotation=-dAngleRevolution;
+break;
+case 3:
+dAngleRotation=9*dAngleRevolution;
+//La révolution correspond à la dixième rotation.
+break;
+default:
+break;
+}
+}
+function lancerAnimation(){
+calculAngle();
+t=setInterval(dessiner,dt);
+}
+</script>
+</head>
+<body onload='initialiser();lancerAnimation();'>
+<div>
+<canvas id='canvasID' width='600' height='600'>
+</canvas>
+<div>
+</div>
+<button onclick='changerModeRotation(1)'> rotation synchrone </button>
+<button onclick='changerModeRotation(2)'> pas de rotation </button>
+<button onclick='changerModeRotation(3)'> rotation rapide </button>
+</div>
+</body>
+</html> -->

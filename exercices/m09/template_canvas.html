@@ -6,7 +6,7 @@
             "use strict";
             //Variables Globales
 			let canvas;
-			let c;
+			let c, width, height;
 
             /*
 			c.fillStyle="rgb("+r+","+g+","+b+")";
@@ -17,9 +17,9 @@
             //Fonctions
 			function init(){
 				canvas = document.getElementById("canvasId");
-				c = ctx.getContext("2d");
-				let width = parseInt(canvas.width);
-				let height = parseInt(canvas.height);
+				c = canvas.getContext("2d");
+				width = parseInt(canvas.width);
+				height = parseInt(canvas.height);
 
 			}
 

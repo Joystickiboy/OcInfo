@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Rebondissements</title>
+
+        <style>
+            body {
+                text-align : center;
+            }
+            
+            canvas, #couleurs {
+                border : 2px solid grey;
+            }
+                
+            canvas {
+                background-color : lightgrey;
+            }
+            
+            #palette {
+                margin: 10px;
+            }
+            
+            table#couleurs {
+                border-collapse: collapse;
+                margin : auto;
+            }
+            
+            td.couleur {
+                height : 40px;
+                padding : 0px;
+            }
+            
+            #b_pause {
+                visibility : hidden;
+			}
+        </style>
+        
+        <script>
+            "use strict";
+
+            // Il ne faut ajouter aucune variable globale ni définir aucune fonction supplémentaire.
+
+            // Les lignes vides laissées dans les fonctions à compléter n'indiquent pas le nombre
+            // de lignes à écrire !
+            
+
+            //--------------------------------------------------
+            // variables globales associées à la balise <canvas>
+            //--------------------------------------------------
+                        
+            var canvas,ctx;
+
+            // Dimensions de la fenêtre canvas (en pixels).
+            // Ces variables globales doivent être utilisées à chaque fois qu'il faut connaître 
+            // la largeur ou la hauteur de la fenêtre canvas.
+            var width=600, height=400;
+
+            /*            
+             * Cette fonction fixe les dimensions de la balise canvas
+             * et initialise les variables qui lui sont associées.
+             * Elle ne reçoit pas de paramètre et ne retourne rien.
+             */
+            // Il faut écrire complètement le corps de cette fonction.
+            function initCanvas() {
+                // À COMPLÉTER
+				canvas = document.getElementById("canvasID");
+				ctx = canvas.getContext("2d");
+			}
+
+
+
+            //----------------------------------------------
+            // variables globales pour gérer l'objet dessiné
+            //----------------------------------------------
+
+            // Le tableau `couleursObjet` contient la couleur du "cadre" carré (élément 0)
+            // et la couleur des deux disques internes (élément 1).
+            var couleursObjet = ['Black', 'Black'];
+
+            // `couleurSelec` est une variable qui doit permettre de déterminer laquelle des
+            // deux valeurs contenues dans `couleursObjet` doit être changée lorsqu'on clique 
+            // sur une des cases de la palette. C'est un nombre entier (positif ou nul).
+            var couleurSelec = 0;
+
+            // Les variables suivantes ne sont pas modifiées pendant l'exécution du programme.
+            // Il faut les utiliser aux endroits adéquats.
+            var couleurCroix = 'White';
+            var couleurGrandDisque = 'White';
+            
+            // Les variables `x` et `y` donnent la position du centre de l'objet dans la fenêtre canvas.
+            var x,y;
+
+            // `angle` est l'angle que font les deux disques intérieurs de l'objet par rapport à l'horizontal.
+            var angle;
+
+            // `taille` fixe la taille de l'objet (moitié du côté du carré et rayon du disque blanc). 
+            // La valeur de cette variable n'est pas changée lors du programme.
+            var taille = 50; //const!!
+
+            //------------------------------------------
+            // variables globales pour gérer l'animation
+            //------------------------------------------
+
+            // `dt` est l'intervalle de temps (en ms) qui s'écoule entre les
+            // images successives de l'animation.
+            // La valeur de cette variable n'est pas changée lors du programme.
+            var dt = 30;
+            
+            // `t` est une variable permettant de suspendre l'animation.
+            var t;
+            
+            // `animation` est une valeur booléenne indiquant si l'animation est en cours ou non..
+            var animation = false;
+
+            // Ces variables permettent de gérer les vitesses de translation et de
+            // rotation de l'objet.
+            var dx,dy,dangle;
+            
+            //---------------------------
+            // fonction(s) utilitaire(s)
+            //---------------------------
+
+            // Cette fonction est entièrement écrite. Elle ne doit pas être modifiée.
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+
+            //--------------------
+            // fonctions de dessin 
+            //--------------------
+
+            /*
+             * Cette fonction efface la fenêtre canvas.
+             * Elle ne reçoit pas de paramètre et ne retourne rien.
+             */ 
+            // Il faut écrire complètement le corps de cette fonction.
+            function effacer(){
+                // À COMPLÉTER
+				ctx.clearRect(0,0,width,height);
+            }
+            
+            
+
+            /*
+             * Cette fonction dessine un disque plein (sans bord).
+             * Elle reçoit deux paramètres, le rayon du disque `r` (nombre) 
+             * et sa couleur `c` (chaîne de caractères). Elle ne retourne rien.
+             * 
+             * Le disque est centré en (0,0) dans le référentiel courant.
+             * La seule variable globale que vous êtes autorisé à utiliser dans cette fonction est `ctx`.
+             */
+            // Il faut écrire complètement le corps de cette fonction.
+            function dessinerDisque(r,c) {
+				// À COMPLÉTER
+				ctx.beginPath();
+                ctx.arc(0,0,r/2,0,Math.PI*2);
+				ctx.closePath();
+				ctx.fillStyle=c;
+				ctx.fill();
+            }
+
+
+
+            /*
+             * Cette fonction dessine un carré plein (sans bord).
+             * Elle reçoit deux paramètres, la longueur du côté du carré `l` (nombre) 
+             * et sa couleur `coul` (chaîne de caractères). Elle ne retourne rien.
+             * 
+             * Le carré est centré en (0,0) dans le référentiel courant.
+             * Dans le référentiel courant, deux côtés du carrés sont verticaux et les deux autres horizontaux.
+             * La seule variable globale que vous êtes autorisé à utiliser dans cette fonction est `c`.
+             */
+            // Il faut écrire complètement le corps de cette fonction.
+            function dessinerCarre(l,c) {
+                // À COMPLÉTER
+				ctx.beginPath();
+				ctx.lineTo(l/2,l/2);
+				ctx.lineTo(-l/2,l/2);
+				ctx.lineTo(-l/2,-l/2);
+				ctx.lineTo(l/2,-l/2);
+				ctx.closePath();
+				ctx.fillStyle=c;
+				ctx.fill();
+            }
+            
+            
+            
+            /*
+             * Cette fonction dessine une croix dont les deux branches ont la même longueur
+             * et se croisent à angle droit.
+             * Elle reçoit deux paramètres, la longueur d'une branche `l` (nombre) 
+             * et sa couleur `c` (chaîne de caractères). Elle ne retourne rien.
+             * 
+             * La croix est centrée en (0,0) dans le référentiel courant.
+             * Dans le référentiel courant, une des branches est horizontale et l'autre est verticale.
+             * La croix doit être constituée de deux traits (chaque trait correspond à une branche).
+             * La seule variable globale que vous êtes autorisé à utiliser dans cette fonction est `ctx`.
+             */
+            // Il faut compléter le corps de cette fonction.
+            function dessinerCroix(l,c) {
+				ctx.lineWidth=2; // Cette instruction permet de fixer la largeur du trait (en pixels).
+				//Il se trouve que en comparant le resultat de cette fonction avec le pdf que la largeur '2' soit la plus appropriée
+                // À COMPLÉTER
+				ctx.beginPath();
+				ctx.moveTo(-l/2,0);
+				ctx.lineTo(l/2,0);
+				ctx.moveTo(0,0);
+				ctx.lineTo(0,l/2);
+				ctx.lineTo(0,-l/2);
+				ctx.closePath();
+				ctx.strokeStyle=c;
+				ctx.stroke();
+            }
+
+
+
+            /*
+             * Cette fonction réalise trois tâches :
+             *   1) Effacer la fenêtre canvas 
+             *   2) Dessiner l'objet complet
+             *   3) Mettre à jour les variables pour faire évoluer l'objet.
+             * Elle ne reçoit pas de paramètre et ne retourne rien. 
+             * 
+             * Elle doit faire appel aux fonctions `dessinerCarre` et `dessinerDisque`.
+             *
+ 			 * Cette fonction doit aussi traiter le fait que, si l'objet rencontre un
+ 			 * des bords de la fenêtre canvas, il doit rebondir pour rester dans les
+ 			 * limites de la fenêtre canvas.
+             */ 
+            // Il faut écrire complètement le corps de cette fonction.
+            function dessiner() {
+                // À COMPLÉTER
+				effacer();
+
+				/*console.log(taille);
+				console.log(angle);
+				console.log(x);
+				console.log(y);
+				console.log("--------");*/
+
+				
+
+				ctx.save();
+					ctx.translate(x,y);
+					dessinerCarre(taille,couleursObjet[0]);
+					dessinerDisque(taille, couleurGrandDisque); //Grand disque
+					//petits disques et croix
+					ctx.rotate(angle);
+					ctx.save()
+						ctx.translate(0,-taille/4);
+						dessinerDisque(taille/2,couleursObjet[1]);
+						ctx.rotate(45 * Math.PI / 180);
+						dessinerCroix(taille/2,couleurCroix);
+					ctx.restore();
+					ctx.save();
+						ctx.translate(0,taille/4);
+						dessinerDisque(taille/2,couleursObjet[1]);
+						dessinerCroix(taille/4,couleurCroix);
+					ctx.restore();
+
+				ctx.restore();
+
+				x += dx;
+				y += dy;
+				angle += dangle;
+				
+				if (x+taille/2 > width){
+					dx = dx * -1;
+				}
+				if (x-taille/2 < 0){
+					dx = dx * -1;
+				}
+
+				if (y+taille/2 > height){
+					dy = dy * -1;
+				}
+				if (y-taille/2 < 0){
+					dy = dy * -1;
+				}
+            }
+
+
+            
+            //---------------------------
+            // fonctions d'initialisation
+            //---------------------------
+               
+            /*
+             * Cette fonction fait apparaître la palette de couleurs en-dessous de la fenêtre canvas.
+             * Elle ne reçoit pas de paramètre et ne retourne rien.
+             */
+            // Dans cette fonction, il y a deux lignes à compléter. Il ne faut ajouter
+            // aucune variable ni aucune ligne supplémentaire.
+            function initPalette() {
+
+                // liste des couleurs apparaissant dans la palette
+                var couleurs = [ 
+                    'Black', 'White', 'LightGrey', 'BurlyWood', 'GoldenRod', 'Chocolate', 
+                    'Brown', 'Crimson', 'SlateBlue', 'CornflowerBlue', 'LimeGreen', 'ForestGreen', 
+                    'Pink', 'Violet' ];
+                
+                var txt = '<table id="couleurs"><tr>';
+                var largCase = width/14;
+                var c;
+                for (let i=0; i<couleurs.length; i++) {
+                    c = couleurs[i];
+                    txt += '<td ' +
+                        'id="couleur_' + c + '" ' + 
+                        'class="couleur" ' +
+                        'style="width:' + largCase + 'px; background-color:' + c + '" ' +
+                        'onclick="choisirCouleur(this.id);"></td>';
+                }
+                txt += '</tr></table>';
+                $('palette').innerHTML = txt;
+            }
+            
+            
+            /*
+             * Cette fonction permet de modifier les couleurs de l'objet.
+             * Elle reçoit un paramètre, `id`, qui est l'id de la case de la palette sur laquelle on a cliqué.
+             * Elle ne retourne rien.
+             * 
+             * C'est cette fonction qui est appelée lorsqu'on clique sur l'une des cases de la palette.
+             * 
+             * Elle fixe alternativement la couleur du "cadre" carré et la couleur des deux disques internes.
+             * Lors de son 1er appel, elle fixe la couleur du cadre, lors du 2e celle des disques, lors du 3e 
+             * celle du cadre, etc...
+             * Cette fonction doit être sans effet si il n'y a pas encore d'objet dessiné dans le canvas
+             * ou si l'objet n'est pas animé.
+             */
+			// Il faut écrire complètement le corps de cette fonction.
+			let modulo = 0;
+            function choisirCouleur(id) {
+				// À COMPLÉTER
+				let modulo = 0;
+				if (animation){
+					if (couleurSelec%2 == 0){
+						//Changer couleur carré
+						couleursObjet[0] = id.substr(8,id.length);
+					} else {
+						couleursObjet[1] = id.substr(8,id.length);
+					}
+					couleurSelec++;
+				}
+            }
+
+
+            /*
+             * Cette fonction (ré)initialise l'objet à animer.
+             * Elle ne reçoit pas de paramètre et ne retourne rien.
+             * Elle permet de (ré)initialiser toutes les variables qui doivent l'être.
+             *
+             * Cette fonction lance ou relance aussi l'animation (si elle était en pause)
+             * et fait en sorte que le bouton de gestion de l'animation soit visible.
+             * 
+             * Les déplacements vertical et horizontal de l'objet entre deux images
+             * successives sont déterminés aléatoirement. Chacun doit être
+             * compris entre 0 et 4 pixels (bornes comprises) dans un sens ou dans l'autre.
+             * Ces valeurs restent constantes jusqu'à la prochaine réinitialisation de l'objet. 
+             * La vitesse de rotation est aussi gérée de manière aléatoire, avec un pas
+             * entre deux images successives auquel on attribue une valeur aléatoire
+             * comprise entre -pi/5 et pi/5 (c'est une valeur en radian) . 
+             * Cette valeur reste aussi constante jusqu'à la prochaine réinitialisation de l'objet.
+
+             */
+            // Il faut écrire complètement le corps de cette fonction.
+            function initObjet() {
+				// À COMPLÉTER
+				if (!animation){
+					animation = true;
+				}
+				clearInterval(t);
+
+				let btn = $("b_pause");
+				btn.innerHTML = "pause";
+				btn.style.visibility = "visible";
+
+				x = width/2;
+				y = height/2;
+				angle = 90 * Math.PI / 180;
+				dx = Math.floor(Math.random()*(4-0+1)+0);
+				dy = Math.floor(Math.random()*(4-0+1)+0);
+				dangle = Math.floor(Math.random()*Math.PI/5) + (-Math.PI/5);
+
+				
+
+				if (animation){
+					t = setInterval(dessiner, dt);
+				} else {
+					clearInterval(t);
+				}
+				
+            }
+
+
+
+            //-----------------------------------
+            // fonction de gestion de l'animation 
+            //-----------------------------------
+
+            /*
+             * Fonction permettant de faire une pause ou de reprendre l'animation.
+             * Elle ne reçoit pas de paramètre et ne retourne rien.
+             *
+             * Si l'animation est en cours, elle l'arrête et affiche le texte "reprendre l'animation dans le bouton".
+             * Si l'animation est en pause, elle la reprend et affiche le texte "pause" dans le bouton.
+             * Elle met à jour la ou les variables globales adéquates.
+             */
+            // Il faut écrire complètement le corps de cette fonction.
+            function gererAnimation() {
+				// À COMPLÉTER
+				let btn = $("b_pause");
+
+				if (btn.innerHTML == "reprendre l'animation"){ //si on est en pause
+					btn.innerHTML = "pause";
+					animation = true; //reprendre animation
+					t = setInterval(dessiner, dt);
+				} else if (btn.innerHTML == "pause"){ //si on est en animation
+					btn.innerHTML = "reprendre l'animation";
+					animation = false; //pauser animation
+					clearInterval(t);
+				}
+            }
+            
+            
+        </script>
+        
+    </head>
+    
+    
+    <!-- 
+        Les balises <body>, <canvas> et <button> doivent être complétées 
+        en y ajoutant un ou des attributs avec les valeurs adéquates.
+        Il ne faut rien ajouter ou modifier d'autre.
+    --> 
+	
+    
+    <body onload="initCanvas();initPalette();"> <!-- À COMPLÉTER -->
+        
+        <canvas id="canvasID" width="600" height="400" onclick="initObjet();"> <!-- À COMPLÉTER -->
+            <!-- ne rien ajouter ici -->
+        </canvas>
+    
+        <div id="palette">
+        </div>
+        
+        <button id="b_pause" onclick="gererAnimation();"> <!-- À COMPLÉTER -->
+            <!-- ne rien ajouter ici -->
+        </button>
+        
+    </body>
+    
+</html>
